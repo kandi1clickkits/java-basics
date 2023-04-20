@@ -10,7 +10,7 @@ ECHO============================================================================
 SET KIT_NAME=java-basics
 REM update below path if required
 SET JAVA_LOCATION=C:\kandikits\java
-SET JAVA_HOME=%JAVA_LOCATION%\jdk-17.0.6
+SET JAVA_HOME=%JAVA_LOCATION%\jdk-17.0.7
 SET WORKING_DIR=C:\kandikits\!KIT_NAME!
 SET JAVA_DOWNLOAD_URL=https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.zip
 SET REPO_DOWNLOAD_URL=https://github.com/kandi1clickkits/java-basics/releases/download/v1.0.0/java-basics.zip
