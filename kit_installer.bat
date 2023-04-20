@@ -12,9 +12,6 @@ REM update below path if required
 SET JAVA_LOCATION=C:\kandikits\java
 SET JAVA_HOME=%JAVA_LOCATION%\jdk-17.0.6
 SET WORKING_DIR=C:\kandikits\!KIT_NAME!
-
-REM SET JAVA_LOCATION="C:\Program Files\Java\jdk-18.0.2.1\bin"
-REM SET JAVA_VERSION=18
 SET JAVA_DOWNLOAD_URL=https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.zip
 SET REPO_DOWNLOAD_URL=https://github.com/kandi1clickkits/java-basics/releases/download/v1.0.0/java-basics.zip
 SET REPO_NAME=java-basics.zip
@@ -53,10 +50,8 @@ IF /I "%CONFIRM%" NEQ "Y" (
 	ECHO==========================================================================
 	tar -xvf %REPO_NAME% 
 	cd %EXTRACTED_REPO_DIR%
-	javac %FILE_NAME%
-	java %FILE_NAME%
-	REM %JAVA_HOME%\bin\javac %FILE_NAME%
-	REM %JAVA_HOME%\bin\java %FILE_NAME%
+	%JAVA_HOME%\bin\javac %FILE_NAME%
+	%JAVA_HOME%\bin\java %FILE_NAME%
 )
 PAUSE
 EXIT /B %ERRORLEVEL%
@@ -64,9 +59,7 @@ EXIT /B %ERRORLEVEL%
 :Main
 where /q javac
 IF ERRORLEVEL 1 (
-	ECHO==========================================================================
-    	ECHO Java wasn't found in PATH variable
-	ECHO==========================================================================
+    ECHO  1. Java wasn't found in PATH variable. Proceeding with installing Java
 	IF ERRORLEVEL 1 (
 		CALL :Install_java_and_modules
 		CALL :Download_repo
@@ -76,9 +69,7 @@ IF ERRORLEVEL 1 (
 
 	)
 ) else (
-			ECHO==========================================================================
-			ECHO Java was detected in PATH! Proceeding with downloading repo
-			ECHO==========================================================================
+			ECHO 1. Java was detected in PATH! Proceeding with downloading repo
 			CALL :Download_repo
 			
 		
@@ -89,9 +80,7 @@ EXIT /B 0
 
 :Download_repo
 bitsadmin /transfer repo_download_job /download %REPO_DOWNLOAD_URL% "%cd%\%REPO_NAME%" >> !WORKING_DIR!\log.txt 2>&1
-ECHO==========================================================================
-ECHO 	The repo has been downloaded successfully
-ECHO==========================================================================
+ECHO 3.	The repo has been downloaded successfully
 EXIT /B 0
 
 
@@ -117,9 +106,7 @@ DEL "jdk-17.zip" >> !WORKING_DIR!\log.txt 2>&1
 
 SET PATH=!JAVA_HOME!\bin;!PATH!
 
-ECHO==========================================================================
-ECHO Java JDK installed in path : %JAVA_LOCATION%
-ECHO==========================================================================
+ECHO 2. Java JDK installed in path : %JAVA_LOCATION%
 
 CD !WORKING_DIR!
 
