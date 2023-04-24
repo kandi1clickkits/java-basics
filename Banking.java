@@ -55,10 +55,10 @@ class  BankAccount{
 		System.out.println("Welcome" +customerId);
 		System.out.println("/n");
 		
-		System.out.println("A : check your balance");
-		System.out.println("B : Deposit");
-		System.out.println("C : Withdraw");
-		System.out.println("D : Previous Transaction");
+		System.out.println("A : Check Account Balance");
+		System.out.println("B : Deposit Money");
+		System.out.println("C : Withdraw Money");
+		System.out.println("D : Previous Transaction Details");
 		System.out.println("E : Calculate Fixed Deposit Interest");
 		System.out.println("F : Calculate Saving Account Interest");
 		System.out.println("Q : Exit");
@@ -74,7 +74,7 @@ class  BankAccount{
 			switch(option) {
 			case 'A':
 				System.out.println("------------------------------------");
-				System.out.println("Balance= " +balance);
+				System.out.println("Account Balance= " +balance);
 				System.out.println("------------------------------------");
 				System.out.println("\n");
 				break;
@@ -85,7 +85,7 @@ class  BankAccount{
 				System.out.println("------------------------------------");
 				int amount = scanner.nextInt();
 				Deposit(amount);
-				
+				System.out.println("Amount deposited in the account = "+amount);
 				System.out.println("\n");
 				break;
 				
@@ -95,12 +95,13 @@ class  BankAccount{
 				System.out.println("------------------------------------");
 				int amount2 = scanner.nextInt();
 				withdraw(amount2);
-				
+				System.out.println("Amount withdrawn from the account = "+amount2);
 				System.out.println("\n");
 				break;
 				
 			case 'D':
 				System.out.println("------------------------------------");
+				System.out.println("Your previous transaction status is: \n ");
 				getPreviousTransaction();
 				System.out.println("--------------------------------------");
 				System.out.println("\n");
@@ -123,7 +124,7 @@ class  BankAccount{
 				break;
 					
 			case 'F':
-				double interest = 4.5;
+				double interest = 5;
 				
 				System.out.println("Enter the principal amount:");
 				double principalAmount = scanner.nextDouble();
@@ -140,7 +141,7 @@ class  BankAccount{
 			break;
 				
 				default:
-					System.out.println("Invalid option!! please enter correct option...");
+					System.out.println("Invalid option!! please enter one of the valid options: A,B,C,D,E,F,Q...");
 					break;
 			}
 		}
