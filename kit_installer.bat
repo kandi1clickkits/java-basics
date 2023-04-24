@@ -12,7 +12,7 @@ REM update below path if required
 SET JAVA_LOCATION=C:\kandikits\java
 SET JAVA_HOME=%JAVA_LOCATION%\jdk-17.0.7
 SET WORKING_DIR=C:\kandikits\!KIT_NAME!
-SET JAVA_DOWNLOAD_URL=https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.zip
+SET JAVA_DOWNLOAD_URL=https://download.oracle.com/java/17/archive/jdk-17.0.7_windows-x64_bin.zip
 SET REPO_DOWNLOAD_URL=https://github.com/kandi1clickkits/java-basics/releases/download/v1.0.0/java-basics.zip
 SET REPO_NAME=java-basics.zip
 SET EXTRACTED_REPO_DIR=java-basics
@@ -57,37 +57,20 @@ PAUSE
 EXIT /B %ERRORLEVEL%
 
 :Main
-where /q javac
-IF ERRORLEVEL 1 (
-    ECHO  1. Java wasn't found in PATH variable. Proceeding with installing Java
-	IF ERRORLEVEL 1 (
-		CALL :Install_java_and_modules
-		CALL :Download_repo
-	) ELSE (
-		CALL :Download_repo
-		
-
-	)
-) else (
-			ECHO 1. Java was detected in PATH! Proceeding with downloading repo
-			CALL :Download_repo
-			
-		
-		)	
-	)
-)
+	CALL :Install_java_and_modules
+	CALL :Download_repo
 EXIT /B 0
 
 :Download_repo
 bitsadmin /transfer repo_download_job /download %REPO_DOWNLOAD_URL% "%cd%\%REPO_NAME%" >> !WORKING_DIR!\log.txt 2>&1
-ECHO 3.	The repo has been downloaded successfully
+ECHO 2.	The repo has been downloaded successfully
 EXIT /B 0
 
 
 :Install_java_and_modules
 CALL :LOG "Downloading java \ ... "
-MKDIR "!WORKING_DIR!\java" >> !WORKING_DIR!\log.txt 2>&1
-curl --output "!WORKING_DIR!\java\jdk-17.zip" %JAVA_DOWNLOAD_URL% >> !WORKING_DIR!\log.txt 2>&1
+REM MKDIR "!WORKING_DIR!\java" >> !WORKING_DIR!\log.txt 2>&1
+curl --output "!WORKING_DIR!\jdk-17.zip" %JAVA_DOWNLOAD_URL% >> !WORKING_DIR!\log.txt 2>&1
 IF ERRORLEVEL 1 (
     EXIT /B 1
 )
@@ -106,7 +89,7 @@ DEL "jdk-17.zip" >> !WORKING_DIR!\log.txt 2>&1
 
 SET PATH=!JAVA_HOME!\bin;!PATH!
 
-ECHO 2. Java JDK installed in path : %JAVA_LOCATION%
+ECHO 1. Java JDK installed in path : %JAVA_LOCATION%
 
 CD !WORKING_DIR!
 
