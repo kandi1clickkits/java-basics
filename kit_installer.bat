@@ -57,7 +57,7 @@ PAUSE
 EXIT /B %ERRORLEVEL%
 
 :Main
-	ECHO Installing JDK and Java 
+	ECHO 1. Installing JDK and Java 
 	TITLE Installing %KIT_NAME% kit 25%% 
 	CALL :Install_java_and_modules
 	CALL :Download_repo
@@ -67,7 +67,7 @@ EXIT /B 0
 
 :Download_repo
 bitsadmin /transfer repo_download_job /download %REPO_DOWNLOAD_URL% "%cd%\%REPO_NAME%" >> !WORKING_DIR!\log.txt 2>&1
-ECHO 2.	The repo has been downloaded successfully
+ECHO 3.	The repo has been downloaded successfully
 TITLE Installing %KIT_NAME% kit 75%% 
 
 EXIT /B 0
@@ -95,7 +95,7 @@ DEL "jdk-17.zip" >> !WORKING_DIR!\log.txt 2>&1
 
 SET PATH=!JAVA_HOME!\bin;!PATH!
 
-ECHO 1. Java JDK installed in path : %JAVA_LOCATION%
+ECHO 2. Java JDK installed in path : %JAVA_LOCATION%
 TITLE Installing %KIT_NAME% kit 50%% 
 
 
